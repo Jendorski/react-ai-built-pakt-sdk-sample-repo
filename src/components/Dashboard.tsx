@@ -16,9 +16,12 @@ const Dashboard: React.FC = () => {
           <div>Username: {user?.userName}</div>
           <div>Name: {user?.firstName} {user?.lastName}</div>
         </div>
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: '20px', display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
           <Link to="/account" className="account-button">
             View Account Details
+          </Link>
+          <Link to="/wallets" className="wallet-button">
+            View Wallets
           </Link>
         </div>
         <button onClick={logout} className="logout-button">

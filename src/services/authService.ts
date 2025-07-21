@@ -277,6 +277,7 @@ export class AuthService {
     }
   }
 
+
   static getToken(): string | null {
     return localStorage.getItem('pakt_token')
   }
