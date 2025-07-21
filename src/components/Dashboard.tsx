@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const Dashboard: React.FC = () => {
@@ -14,6 +15,11 @@ const Dashboard: React.FC = () => {
           <div>Email: {user?.email}</div>
           <div>Username: {user?.userName}</div>
           <div>Name: {user?.firstName} {user?.lastName}</div>
+        </div>
+        <div style={{ marginBottom: '20px' }}>
+          <Link to="/account" className="account-button">
+            View Account Details
+          </Link>
         </div>
         <button onClick={logout} className="logout-button">
           Logout

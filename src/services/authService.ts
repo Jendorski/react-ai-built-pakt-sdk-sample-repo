@@ -13,6 +13,7 @@ import {
   GoogleOAuthGenerateDto,
   GoogleOAuthValdatePayload,
   GoogleOAuthValidateDto,
+  IUser,
 } from 'pakt-sdk'
 
 // interface PaktConfig {
@@ -29,18 +30,9 @@ export class AuthService {
   private static sdk: PaktSDK
 
   static async initializeSDK(): Promise<void> {
-    const apiKey = process.env.REACT_APP_PAKT_SDK_API_KEY || ''
-
-    if (!apiKey) {
-      throw new Error(
-        'PAKT SDK API key not found. Please set REACT_APP_PAKT_SDK_API_KEY environment variable.'
-      )
-    }
-
     const configData: PaktConfig = {
       baseUrl: 'http://localhost:9000',
       verbose: true,
-      token: '',
     }
 
     try {
@@ -259,6 +251,30 @@ export class AuthService {
 
   static async logout(): Promise<void> {
     localStorage.removeItem('pakt_token')
+  }
+
+  static async getUser(): Promise<IUser> {
+    if (!this.sdk) {
+      await this.initializeSDK()
+    }
+
+    try {
+      const token = this.getToken()
+      if (!token) {
+        throw new Error('No authentication token found')
+      }
+
+      const response: ResponseDto<IUser> = await this.sdk.account.getUser(token)
+      
+      if (response.status) {
+        return response.data
+      } else {
+        throw new Error(response.message || 'Failed to get user data')
+      }
+    } catch (error) {
+      console.error('Get user error:', error)
+      throw error
+    }
   }
 
   static getToken(): string | null {

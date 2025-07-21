@@ -13,7 +13,7 @@
     "@types/react-dom": "^19.1.6",
     "@types/react-router-dom": "^5.3.3",
     "cra-template-typescript": "1.3.0",
-    "pakt-sdk": "file:../../../Pakt/PaktSDK",
+    "pakt-sdk": "file:../PaktSDK",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.3",
