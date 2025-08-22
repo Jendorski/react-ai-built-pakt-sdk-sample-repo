@@ -45,9 +45,10 @@ export class WalletService {
         throw new Error('No authentication token found')
       }
 
-      const response: ResponseDto<IWalletResponseDto> = await this.sdk.wallet.getWallets(token)
-      
-      if (response.status) {
+      const response: ResponseDto<IWalletResponseDto> =
+        await this.sdk.wallet.getWallets(token)
+
+      if (response.status === Status.SUCCESS) {
         return response.data
       } else {
         throw new Error(response.message || 'Failed to get wallet data')
@@ -69,8 +70,9 @@ export class WalletService {
         throw new Error('No authentication token found')
       }
 
-      const response: ResponseDto<ISingleWalletDto> = await this.sdk.wallet.getSingleWalletById(token, id)
-      
+      const response: ResponseDto<ISingleWalletDto> =
+        await this.sdk.wallet.getSingleWalletById(token, id)
+
       if (response.status) {
         return response.data
       } else {
@@ -93,8 +95,9 @@ export class WalletService {
         throw new Error('No authentication token found')
       }
 
-      const response: ResponseDto<ISingleWalletDto> = await this.sdk.wallet.getSingleWalletByCoin(token, coin)
-      
+      const response: ResponseDto<ISingleWalletDto> =
+        await this.sdk.wallet.getSingleWalletByCoin(token, coin)
+
       if (response.status) {
         return response.data
       } else {
@@ -117,8 +120,9 @@ export class WalletService {
         throw new Error('No authentication token found')
       }
 
-      const response: ResponseDto<IWalletExchangeDto> = await this.sdk.wallet.getExchange(token)
-      
+      const response: ResponseDto<IWalletExchangeDto> =
+        await this.sdk.wallet.getExchange(token)
+
       if (response.status) {
         return response.data
       } else {
@@ -141,8 +145,9 @@ export class WalletService {
         throw new Error('No authentication token found')
       }
 
-      const response: ResponseDto<FindTransactionsDto> = await this.sdk.wallet.getTransactions(token)
-      
+      const response: ResponseDto<FindTransactionsDto> =
+        await this.sdk.wallet.getTransactions(token)
+
       if (response.status) {
         return response.data
       } else {
@@ -165,8 +170,9 @@ export class WalletService {
         throw new Error('No authentication token found')
       }
 
-      const response: ResponseDto<ITransactionDto> = await this.sdk.wallet.getATransaction(token, id)
-      
+      const response: ResponseDto<ITransactionDto> =
+        await this.sdk.wallet.getATransaction(token, id)
+
       if (response.status) {
         return response.data
       } else {
@@ -178,7 +184,9 @@ export class WalletService {
     }
   }
 
-  static async getTransactionStats(format: ITransactionStatsFormat): Promise<ITransactionStatsDto[]> {
+  static async getTransactionStats(
+    format: ITransactionStatsFormat
+  ): Promise<ITransactionStatsDto[]> {
     if (!this.sdk) {
       await this.initializeSDK()
     }
@@ -189,12 +197,15 @@ export class WalletService {
         throw new Error('No authentication token found')
       }
 
-      const response: ResponseDto<ITransactionStatsDto[]> = await this.sdk.wallet.getTransactionStats(token, format)
-      
+      const response: ResponseDto<ITransactionStatsDto[]> =
+        await this.sdk.wallet.getTransactionStats(token, format)
+
       if (response.status) {
         return response.data
       } else {
-        throw new Error(response.message || 'Failed to get transaction stats data')
+        throw new Error(
+          response.message || 'Failed to get transaction stats data'
+        )
       }
     } catch (error) {
       console.error('Get transaction stats error:', error)
@@ -213,12 +224,15 @@ export class WalletService {
         throw new Error('No authentication token found')
       }
 
-      const response: ResponseDto<AggTxns[]> = await this.sdk.wallet.getAggregateTransactionStats(token)
-      
+      const response: ResponseDto<AggTxns[]> =
+        await this.sdk.wallet.getAggregateTransactionStats(token)
+
       if (response.status) {
         return response.data
       } else {
-        throw new Error(response.message || 'Failed to get aggregate transaction stats data')
+        throw new Error(
+          response.message || 'Failed to get aggregate transaction stats data'
+        )
       }
     } catch (error) {
       console.error('Get aggregate transaction stats error:', error)

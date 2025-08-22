@@ -6,6 +6,7 @@ import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import UserDetails from './components/UserDetails';
 import WalletList from './components/WalletList';
+import DirectDeposit from './components/DirectDeposit';
 import EmailVerification from './components/EmailVerification';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
@@ -103,6 +104,14 @@ const AppRoutes: React.FC = () => {
         element={
           <ProtectedRoute>
             <WalletList />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/direct-deposit"
+        element={
+          <ProtectedRoute>
+            <DirectDeposit />
           </ProtectedRoute>
         }
       />

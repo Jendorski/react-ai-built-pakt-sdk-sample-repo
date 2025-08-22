@@ -161,3 +161,22 @@
 .logout-button:hover {
   background: rgba(255, 255, 255, 0.3);
 }
+
+.account-button, .wallet-button, .deposit-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  text-align: center;
+}
+
+.account-button:hover, .wallet-button:hover, .deposit-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+  text-decoration: none;
+}

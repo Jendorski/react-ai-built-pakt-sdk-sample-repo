@@ -55,8 +55,35 @@ export class AuthService {
       }
 
       const response = await this.sdk.auth.login(loginData)
+      console.log({ response })
 
-      if (response.status) {
+      if (response.status === Status.SUCCESS) {
+        localStorage.setItem('pakt_token', response.data.token)
+        return response.data
+      } else {
+        throw new Error(response.message || 'Login failed')
+      }
+    } catch (error) {
+      console.error('Login error:', error)
+      throw error
+    }
+  }
+
+  static async loginTwoFA(code: string, tempToken: string): Promise<any> {
+    if (!this.sdk) {
+      await this.initializeSDK()
+    }
+
+    try {
+      const loginData = {
+        code,
+        tempToken,
+      }
+
+      const response = await this.sdk.auth.loginTwoFa(loginData)
+      console.log({ response })
+
+      if (response.status === Status.SUCCESS) {
         localStorage.setItem('pakt_token', response.data.token)
         return response.data
       } else {
@@ -108,6 +135,7 @@ export class AuthService {
 
     try {
       const response = await this.sdk.auth.verifyAccount({ tempToken, token })
+      console.log({ response })
 
       if (response.status === Status.SUCCESS) {
         return response.data
@@ -265,7 +293,7 @@ export class AuthService {
       }
 
       const response: ResponseDto<IUser> = await this.sdk.account.getUser(token)
-      
+
       if (response.status) {
         return response.data
       } else {
@@ -276,7 +304,6 @@ export class AuthService {
       throw error
     }
   }
-
 
   static getToken(): string | null {
     return localStorage.getItem('pakt_token')
