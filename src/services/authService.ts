@@ -14,6 +14,8 @@ import {
   GoogleOAuthValdatePayload,
   GoogleOAuthValidateDto,
   IUser,
+  LoginPayload,
+  LoginDto,
 } from 'pakt-sdk'
 
 // interface PaktConfig {
@@ -32,6 +34,7 @@ export class AuthService {
   static async initializeSDK(): Promise<void> {
     const configData: PaktConfig = {
       baseUrl: 'http://localhost:9000',
+      accessToken: "",
       verbose: true,
     }
 
@@ -46,15 +49,17 @@ export class AuthService {
   static async login(email: string, password: string): Promise<any> {
     if (!this.sdk) {
       await this.initializeSDK()
-    }
+      }
 
     try {
-      const loginData = {
+      const loginData: LoginPayload = {
         email,
         password,
       }
 
-      const response = await this.sdk.auth.login(loginData)
+      const response: ResponseDto<LoginDto> = await this.sdk.auth.login(
+        loginData
+      )
       console.log({ response })
 
       if (response.status === Status.SUCCESS) {

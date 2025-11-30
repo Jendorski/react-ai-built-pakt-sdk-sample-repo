@@ -19,6 +19,7 @@ export class WalletService {
   static async initializeSDK(): Promise<void> {
     const configData: PaktConfig = {
       baseUrl: 'http://localhost:9000',
+      accessToken: "",
       verbose: true,
     }
 

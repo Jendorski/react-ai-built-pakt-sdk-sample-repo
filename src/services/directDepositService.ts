@@ -35,7 +35,7 @@ export class DirectDepositService {
   static async initializeSDK(): Promise<void> {
     const configData: PaktConfig = {
       baseUrl: 'http://localhost:9000',
-      verbose: true,
+accessToken: "",      verbose: true,
     }
 
     try {
@@ -108,7 +108,6 @@ export class DirectDepositService {
         status: validationData.status,
         owner: validationData.owner,
         meta: validationData.meta,
-        release: validationData.release,
       }
 
       const response: ResponseDto<IValidateDirectDepositResponse> =

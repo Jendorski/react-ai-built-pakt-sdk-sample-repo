@@ -5,7 +5,6 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { AuthService } from '../services/authService'
 
 interface User {

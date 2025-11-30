@@ -11,6 +11,8 @@ import EmailVerification from './components/EmailVerification';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import OAuthCallback from './components/OAuthCallback';
+import CollectionSchemaManager from './components/CollectionSchemaManager';
+import CollectionStoreManager from './components/CollectionStoreManager';
 import './styles/auth.css';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -113,6 +115,22 @@ const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <DirectDeposit />
           </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/schemas"
+        element={
+          <PublicRoute>
+            <CollectionSchemaManager />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/schemas/:schemaId/data"
+        element={
+          <PublicRoute>
+            <CollectionStoreManager />
+          </PublicRoute>
         }
       />
     </Routes>

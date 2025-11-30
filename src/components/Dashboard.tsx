@@ -26,6 +26,9 @@ const Dashboard: React.FC = () => {
           <Link to="/direct-deposit" className="deposit-button">
             Direct Deposit
           </Link>
+          <Link to="/schemas" className="account-button">
+            Manage Schemas
+          </Link>
         </div>
         <button onClick={logout} className="logout-button">
           Logout
